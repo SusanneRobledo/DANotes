@@ -18,12 +18,14 @@ import { Observable } from 'rxjs';
 export class NoteListService {
   trashNotes: Note[] = [];
   normalNotes: Note[] = [];
+  normalMarkedNotes: Note[] = [];
 
   /* items$;
   items; */
 
   unsubTrash;
   unsubNotes;
+  //unsubMarkedNotes;
   //unsubSingle;
 
   firestore: Firestore = inject(Firestore);
@@ -31,6 +33,7 @@ export class NoteListService {
   constructor() {
     this.unsubNotes = this.subNotesList();
     this.unsubTrash = this.subTrashList();
+    //this.unsubMarkedNotes = this.subMarkedNotesList();
 
     /*     this.unsubSingle = onSnapshot(
       this.getSingleDocRef('notes', 'RTy9i6yuZYjvG7B4ASDq'),
@@ -101,6 +104,7 @@ export class NoteListService {
     //this.unsubSingle();
     this.unsubNotes();
     this.unsubTrash();
+    //this.unsubMarkedNotes();
     //this.items.unsubscribe();
   }
 
@@ -121,6 +125,8 @@ export class NoteListService {
       });
     });
   }
+
+  //subMarkedNotesList() {}
 
   setNotesObject(obj: any, id: string): Note {
     return {
